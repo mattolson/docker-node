@@ -48,8 +48,9 @@ RUN ARCH= && dpkgArch="$(dpkg --print-architecture)" \
   # smoke tests
   && node --version \
   && npm --version \
-  && npm install -g pnpm@${PNPM_VERSION} \
   && mkdir -p /usr/local/share/pnpm \
   && echo "export PNPM_HOME=/usr/local/share/pnpm" >> /root/.bashrc \
   && echo "export PATH=\"/usr/local/share/pnpm:$PATH\"" >> /root/.bashrc \
-  && echo "alias pn=pnpm" >> /root/.bashrc
+  && echo "alias pn=pnpm" >> /root/.bashrc \
+  && npm install --global pnpm@${PNPM_VERSION} \
+  && pnpm config set store-dir /usr/local/share/pnpm/store
